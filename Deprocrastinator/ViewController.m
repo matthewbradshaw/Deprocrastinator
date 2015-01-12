@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *userEntry;
 @property NSMutableArray *userEntries;
+@property NSMutableString *userString;
 @property (strong, nonatomic) IBOutlet UITableView *userEntryTableView;
 
 @end
@@ -23,6 +24,7 @@
 
     [super viewDidLoad];
 
+
     self.userEntries = [NSMutableArray arrayWithObjects: nil];
 
 }
@@ -30,26 +32,23 @@
 - (IBAction)onAddButtonPressed:(UIButton *)sender {
     NSLog(@"<%@:%@:%d>", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__);
 
-    if (self.userEntry.text) {
-        NSString *myUserEntry = self.userEntry.text;
-        [self.userEntries addObject:myUserEntry];
-        NSLog(@"my user entry %@", myUserEntry);
-        NSLog(@"self.userEntries.count %lu", (unsigned long)self.userEntries.count);
-        [self.userEntryTableView reloadData];
-//        self.userEntry.text = @"";
-    }
+    NSString *myUserEntry = self.userEntry.text;
+    [self.userEntries addObject:myUserEntry];
 
+    NSLog(@"my user entry %@", myUserEntry);
+    NSLog(@"self.userEntries.count %lu", (unsigned long)self.userEntries.count);
+    
+    self.userEntry.text = @"";
+    [self.userEntry resignFirstResponder];
+    [self.userEntryTableView reloadData];
 
-
-
-//    if (self.userEntry.text) {
-//        NSLog(@"We Have Entry %@", myUserEntry);
-//    }
 }
+
+#pragma mark UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"<%@:%@:%d>", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__);
-
+    NSLog(@"self.userEntries.count %lu", (unsigned long)self.userEntries.count);
     return self.userEntries.count;
 }
 
@@ -57,7 +56,9 @@
     NSLog(@"<%@:%@:%d>", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__);
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ToDoCellID"];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.userEntry.text];
+    cell.textLabel.text = [self.userEntries objectAtIndex:indexPath.row];
+    NSLog(@"cell.textLabel.text %@", cell.textLabel.text);
+
 
     return cell;
 }

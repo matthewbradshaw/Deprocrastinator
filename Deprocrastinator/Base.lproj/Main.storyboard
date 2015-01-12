@@ -33,7 +33,7 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="h75-J6-78N"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter New TODO Item" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dnf-fM-zgx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter New To-Do Item" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dnf-fM-zgx">
                                 <rect key="frame" x="16" y="66" width="255" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
