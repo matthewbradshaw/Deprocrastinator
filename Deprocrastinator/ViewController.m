@@ -11,9 +11,10 @@
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITextField *userEntry;
+@property (strong, nonatomic) IBOutlet UITableView *userEntryTableView;
+
 @property NSMutableArray *userEntries;
 @property NSMutableString *userString;
-@property (strong, nonatomic) IBOutlet UITableView *userEntryTableView;
 
 @end
 
@@ -35,9 +36,9 @@
     NSString *myUserEntry = self.userEntry.text;
     [self.userEntries addObject:myUserEntry];
 
-    NSLog(@"my user entry %@", myUserEntry);
-    NSLog(@"self.userEntries.count %lu", (unsigned long)self.userEntries.count);
-    
+//    NSLog(@"my user entry %@", myUserEntry);
+//    NSLog(@"self.userEntries.count %lu", (unsigned long)self.userEntries.count);
+
     self.userEntry.text = @"";
     [self.userEntry resignFirstResponder];
     [self.userEntryTableView reloadData];
@@ -58,12 +59,20 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ToDoCellID"];
     cell.textLabel.text = [self.userEntries objectAtIndex:indexPath.row];
     NSLog(@"cell.textLabel.text %@", cell.textLabel.text);
+//    cell.textLabel.textColor = [UIColor blueColor];
 
 
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.textLabel.textColor = [UIColor greenColor];
+
+    NSLog(@" cell.textLabel %@", cell.textLabel);
+
+}
 
 
 @end
