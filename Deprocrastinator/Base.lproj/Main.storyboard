@@ -51,7 +51,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
-                    <navigationItem key="navigationItem" id="nN9-42-AIa"/>
+                    <navigationItem key="navigationItem" id="nN9-42-AIa">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="66V-nc-AtA">
+                            <connections>
+                                <action selector="onEditButtonPressed:" destination="vXZ-lx-hvc" id="B7i-na-SFl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="userEntry" destination="dnf-fM-zgx" id="WNT-hR-1Xo"/>
                         <outlet property="userEntryTableView" destination="Epb-fR-W90" id="KjC-Ba-hJH"/>
