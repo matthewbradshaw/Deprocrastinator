@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *userEntry;
 @property (strong, nonatomic) IBOutlet UITableView *userEntryTableView;
@@ -76,6 +76,31 @@
         sender.style = UIBarButtonItemStyleDone;
         sender.title = @"Done";
         [sender setTitle:@"Done"];
+    }
+
+}
+
+#pragma mark SwipeGestures
+- (IBAction)onSwipeRight:(UISwipeGestureRecognizer *)sender {
+    CGPoint location  = [sender locationInView:self.userEntryTableView];
+    NSIndexPath *indexPath = [self.userEntryTableView indexPathForRowAtPoint:location];
+    UITableViewCell *swipedCell = [self.userEntryTableView cellForRowAtIndexPath:indexPath];
+
+
+
+//    swipedCell.textLabel.textColor = [UIColor blackColor];
+    if (swipedCell.textLabel.textColor == [UIColor blackColor]) {
+        swipedCell.textLabel.textColor = [UIColor redColor];
+
+    } else if (swipedCell.textLabel.textColor == [UIColor redColor]){
+        swipedCell.textLabel.textColor = [UIColor yellowColor];
+
+    } else if (swipedCell.textLabel.textColor == [UIColor yellowColor]) {
+        swipedCell.textLabel.textColor = [UIColor greenColor];
+
+    } else if (swipedCell.textLabel.textColor == [UIColor greenColor]) {
+        swipedCell.textLabel.textColor = [UIColor blackColor];
+
     }
 
 }

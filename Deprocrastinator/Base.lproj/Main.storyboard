@@ -31,6 +31,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="fOg-MD-QK0"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="h75-J6-78N"/>
+                                    <outletCollection property="gestureRecognizers" destination="2Ti-ra-Ljx" appends="YES" id="nxG-ob-B4o"/>
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter New To-Do Item" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dnf-fM-zgx">
@@ -64,6 +65,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="2Ti-ra-Ljx">
+                    <connections>
+                        <action selector="onSwipeRight:" destination="vXZ-lx-hvc" id="Uhm-HB-fa5"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="535" y="335"/>
         </scene>
