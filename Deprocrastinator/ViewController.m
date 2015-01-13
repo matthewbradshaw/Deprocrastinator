@@ -8,13 +8,14 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *userEntry;
 @property (strong, nonatomic) IBOutlet UITableView *userEntryTableView;
 
 @property NSMutableArray *userEntries;
 @property NSMutableString *userString;
+@property NSIndexPath *deleteIndexPath;
 
 @end
 
@@ -59,7 +60,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+
     [self.userEntries removeObjectAtIndex:indexPath.row];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.deleteIndexPath = indexPath;
+    }
+
+
     [self.userEntryTableView reloadData];
 }
 
@@ -76,10 +84,28 @@
         sender.style = UIBarButtonItemStyleDone;
         sender.title = @"Done";
         [sender setTitle:@"Done"];
+//        [self superDuper];
     }
 
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self.userEntries removeObjectAtIndex:self.deleteIndexPath.row];
+        [self.userEntryTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:self.deleteIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
+-(void)superDuper {
+    NSLog(@"LOVE");
+    UIAlertView *alert =[[UIAlertView alloc] initWithTitle:@"ALERT" message:@"Are you sure you want to DELETE?"
+                                                  delegate:self
+                                         cancelButtonTitle:@"Cancel"
+                                         otherButtonTitles:@"Delete", nil];
+    [alert show];
+
+}
 #pragma mark SwipeGestures
 - (IBAction)onSwipeRight:(UISwipeGestureRecognizer *)sender {
     CGPoint location  = [sender locationInView:self.userEntryTableView];
